@@ -8,19 +8,22 @@ Array::Array(size_t lenght)
 
 void Array::setSorted()
 {
-	for (unsigned int k = 0; k < 3; k++)
+	for (unsigned k = 0; k < 3; k++)
 	{
-		for (unsigned int i = 0; i < lenght; i++)
+		for (unsigned int j = 1; j < lenght; j++)
 		{
-			for (unsigned j = 0; j < lenght - 1; j++)
+			bool isSorted = true;
+			for (int i = 0; i < lenght - j; i++)
 			{
-				if (arr[i].getTELE()[k] > arr[j + 1].getTELE()[k])
+				if (arr[i].getTELE() > arr[i + 1].getTELE())
 				{
-					NOTE2 temp = arr[j];
-					arr[j] = arr[j + 1];
-					arr[j + 1] = temp;
+					NOTE2 temp = arr[i];
+					arr[i] = arr[i + 1];
+					arr[i + 1] = temp;
+					isSorted = false;
 				}
 			}
+			if (isSorted) break;
 		}
 	}
 }
@@ -55,15 +58,3 @@ int Array::HasInArray(std::string surname) const
 	return -1;
 }
 
-//NOTE2* Array::getInformation(std::string surname)
-//{
-//	for (unsigned int i = 0; i < lenght; i++)
-//	{
-//		std::stringstream streamName(arr[i].getName());
-//		std::string _name, _surname;
-//		std::getline(streamName, _name, ' ');
-//		std::getline(streamName, _surname, ' ');
-//		if (surname == _surname) return (arr + i);
-//	}
-//	return nullptr;
-//}
